@@ -5,6 +5,11 @@
   "main": "index.js",
   "author": "Tammo Ippen <tammo.ippen@posteo.de>",
   "license": "MIT",
+  "homepage": "https://github.com/tammoippen/browserify-vue-template#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tammoippen/browserify-vue-template.git"
+  },
   "keywords": [
     "vue",
     "templates",
