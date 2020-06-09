@@ -1,5 +1,10 @@
 const transformTools = require('browserify-transform-tools');
 const compiler = require('vue-template-compiler');
+const transpile = require('vue-template-es2015-compiler');
+
+function toFunction(code) {
+  return transpile('function render () {' + code + '}');
+}
 
 let options = {
   jsFilesOnly: true,
@@ -15,7 +20,7 @@ module.exports = transformTools.makeFalafelTransform(
   options,
   function (node, transformOptions, done) {
     let prop_name = 'compile_this_template';
-    if (transformOptions.config) {
+    if (transformOptions.config && transformOptions.config.prop_name) {
       prop_name = transformOptions.config.prop_name;
     }
     if (node.type === 'VariableDeclarator' && node.id.name === prop_name) {
@@ -53,21 +58,17 @@ module.exports = transformTools.makeFalafelTransform(
             )
           );
         }
-        compile_result.render = 'function() {' + result.render + '}';
-        compile_result.staticRenderFns = result.staticRenderFns.map(
-          v => 'function() {' + v + '}'
-        );
+        compile_result.render = toFunction(result.render);
+        compile_result.staticRenderFns = result.staticRenderFns.map(toFunction);
       }
     }
 
     if (
       node.type === 'Property' &&
-      node.key.type === 'Identifier' &&
       node.key.name === prop_name &&
       (node.shorthand ||
         (node.value.type === 'Identifier' && node.value.name === prop_name))
     ) {
-      // console.log(node);
       if (compile_result.render === null) {
         return done(new Error('No template compiled.'));
       }

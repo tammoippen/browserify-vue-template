@@ -34,7 +34,7 @@ describe('some positive examples', () => {
     };`;
     let expected_content = `const compile_this_template = '<h1>{{ mgs }}</h1>';
     const comp = {
-        render: function() {with(this){return _c('h1',[_v(_s(mgs))])}}, staticRenderFns: [],
+        render: function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('h1',[_vm._v(_vm._s(_vm.mgs))])}, staticRenderFns: [],
     };`;
     transformTools.runTransform(
       myTransform,
@@ -60,7 +60,7 @@ describe('some positive examples', () => {
     };`;
     let expected_content = `const compile_this_template = \`<h1>{{ mgs }}</h1>\`;
     const comp = {
-        render: function() {with(this){return _c('h1',[_v(_s(mgs))])}}, staticRenderFns: [],
+        render: function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('h1',[_vm._v(_vm._s(_vm.mgs))])}, staticRenderFns: [],
     };`;
     transformTools.runTransform(
       myTransform,
@@ -85,7 +85,7 @@ describe('some positive examples', () => {
     };`;
     let expected_content = `const compile_this_template = '<h1>{{ mgs }}</h1>';
     const comp = {
-        render: function() {with(this){return _c('h1',[_v(_s(mgs))])}}, staticRenderFns: [],
+        render: function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('h1',[_vm._v(_vm._s(_vm.mgs))])}, staticRenderFns: [],
     };`;
     transformTools.runTransform(
       myTransform,
@@ -111,7 +111,7 @@ describe('some positive examples', () => {
     };`;
     let expected_content = `const my_prop_name = \`<h1>{{ mgs }}</h1>\`;
     const comp = {
-        render: function() {with(this){return _c('h1',[_v(_s(mgs))])}}, staticRenderFns: [],
+        render: function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('h1',[_vm._v(_vm._s(_vm.mgs))])}, staticRenderFns: [],
     };`;
     transformTools.runTransform(
       myTransform,
@@ -158,7 +158,7 @@ describe('some positive examples', () => {
     \`;
     const comp = {
         name: "foo-bar",
-        render: function() {with(this){return _c('div',[_m(0),_v(" "),_c('h1',[_v(_s(msg))]),_v(" "),_m(1)])}}, staticRenderFns: [function() {with(this){return _c('div',[_c('p',[_v("This will be static")])])}},function() {with(this){return _c('div',[_c('p',[_v("This will be static")])])}}],
+        render: function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_vm._m(0),_vm._v(" "),_c('h1',[_vm._v(_vm._s(_vm.msg))]),_vm._v(" "),_vm._m(1)])}, staticRenderFns: [function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_c('p',[_vm._v("This will be static")])])},function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_c('p',[_vm._v("This will be static")])])}],
     };`;
     transformTools.runTransform(
       myTransform,

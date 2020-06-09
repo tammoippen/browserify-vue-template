@@ -23,7 +23,8 @@
   },
   "dependencies": {
     "browserify-transform-tools": "^1.7.0",
-    "vue-template-compiler": "^2.6.11"
+    "vue-template-compiler": "^2.6.11",
+    "vue-template-es2015-compiler": "^1.9.1"
   },
   "devDependencies": {
     "browserify": "^16.5.1",
