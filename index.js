@@ -62,9 +62,12 @@ module.exports = transformTools.makeFalafelTransform(
 
     if (
       node.type === 'Property' &&
-      node.shorthand &&
-      node.key.name === prop_name
+      node.key.type === 'Identifier' &&
+      node.key.name === prop_name &&
+      (node.shorthand ||
+        (node.value.type === 'Identifier' && node.value.name === prop_name))
     ) {
+      // console.log(node);
       if (compile_result.render === null) {
         return done(new Error('No template compiled.'));
       }

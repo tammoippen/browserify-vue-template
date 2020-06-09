@@ -77,6 +77,32 @@ describe('some positive examples', () => {
     );
   });
 
+  it('works with key: value property', done => {
+    expect.assertions(1);
+    let content = `const compile_this_template = '<h1>{{ mgs }}</h1>';
+    const comp = {
+        compile_this_template: compile_this_template,
+    };`;
+    let expected_content = `const compile_this_template = '<h1>{{ mgs }}</h1>';
+    const comp = {
+        render: function() {with(this){return _c('h1',[_v(_s(mgs))])}}, staticRenderFns: [],
+    };`;
+    transformTools.runTransform(
+      myTransform,
+      dummyJsFile,
+      { content: content },
+      function (err, transformed) {
+        if (err) done(err);
+        try {
+          expect(transformed).toStrictEqual(expected_content);
+          done();
+        } catch (error) {
+          done(error);
+        }
+      }
+    );
+  });
+
   it('different prop_name', done => {
     expect.assertions(1);
     let content = `const my_prop_name = \`<h1>{{ mgs }}</h1>\`;
